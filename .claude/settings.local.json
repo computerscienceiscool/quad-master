@@ -3,7 +3,13 @@
     "allow": [
       "Bash(ls:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(dart analyze:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(hash -r)",
+      "Bash(/snap/bin/flutter analyze:*)",
+      "Bash(bash:*)",
+      "Bash(snap list:*)"
     ]
   }
 }
