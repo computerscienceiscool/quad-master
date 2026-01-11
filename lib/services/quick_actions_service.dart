@@ -1,5 +1,4 @@
 import 'package:quick_actions/quick_actions.dart';
-import 'package:flutter/material.dart';
 
 class QuickActionsService {
   final QuickActions _quickActions = const QuickActions();

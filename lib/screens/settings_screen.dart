@@ -24,8 +24,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   Future<void> _loadNotificationSettings() async {
-    final appState = context.read<AppState>();
-    // Load from storage in real implementation
+    // TODO: Load from storage using context.read<AppState>() when implemented
     setState(() {
       _notificationSettings = {
         'enableMorning': true,
