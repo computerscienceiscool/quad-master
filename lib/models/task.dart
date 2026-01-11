@@ -43,7 +43,8 @@ class Task {
   }
 
   bool _isSameWeek(DateTime a, DateTime b) {
-    // Get the Sunday of each week
+    // Dart weekday: Mon=1, Tue=2, ... Sat=6, Sun=7
+    // weekday % 7 gives: Mon=1, ... Sat=6, Sun=0 (days since Sunday)
     final sundayA = a.subtract(Duration(days: a.weekday % 7));
     final sundayB = b.subtract(Duration(days: b.weekday % 7));
     return _isSameDay(sundayA, sundayB);

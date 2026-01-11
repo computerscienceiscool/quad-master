@@ -28,12 +28,10 @@
 007 ALL: Add widget tests for core UI components
 
 ### Medium Priority
-008 ALL: Remove emojis from code to comply with CLAUDE.md standards
 009 ALL: Optimize summary stats calculation with memoization
 010 ALL: Add navigation observer for automatic undo state clearing
 
 ### Low Priority
-011 ALL: Improve week calculation clarity in Task model
 
 ## Platform-Specific
 
@@ -52,4 +50,6 @@
 ## DONE
 
 ✓ 012 ALL: Fix CLAUDE.md file naming docs (2026-01-10)
+✓ 008 ALL: Clarify emoji policy - allowed for streak badges, notifications, share text (2026-01-10)
+✓ 011 ALL: Improve week calculation clarity in Task model (2026-01-10)
 

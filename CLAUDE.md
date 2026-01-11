@@ -14,7 +14,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### UI/UX Design
 - Sleek, minimalist design
-- No emojis in UI or code
+- No emojis in UI or code (exceptions: streak badges, notifications, share text)
 - No icons unless explicitly agreed upon
 - Clean, professional aesthetic
 
@@ -266,6 +266,7 @@ TODO/
 - **Messages:** Short, imperative, capitalized (e.g., "Fix streak calculation bug")
 - **Body:** Include bullet summaries per changed file when multiple files are modified
 - **Timing:** Commit after completing issues or logical milestones; ensure app builds before committing
+- **No co-author lines** - do not add Co-Authored-By footers
 
 ## Agent Instructions
 - A message containing only `commit` means: stage and commit all current changes with a properly formatted message
