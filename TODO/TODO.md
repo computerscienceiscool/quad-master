@@ -32,6 +32,10 @@
 010 ALL: Add navigation observer for automatic undo state clearing
 
 ### Low Priority
+013 ALL: Fix deprecated Color.withOpacity - use withValues() (11 occurrences)
+014 ALL: Fix deprecated TextFormField value - use initialValue (4 occurrences)
+015 ALL: Fix deprecated Color.value - use toARGB32 (1 occurrence)
+016 ALL: Fix deprecated color accessors red/green/blue (3 occurrences)
 
 ## Platform-Specific
 
