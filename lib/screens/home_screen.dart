@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: selectedQuadrantId,
+                initialValue: selectedQuadrantId,
                 decoration: const InputDecoration(
                   labelText: 'Quadrant',
                   border: OutlineInputBorder(),
@@ -129,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<TaskFrequency>(
-                value: selectedFrequency,
+                initialValue: selectedFrequency,
                 decoration: const InputDecoration(
                   labelText: 'Frequency',
                   border: OutlineInputBorder(),
@@ -282,7 +282,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: const Icon(Icons.menu, color: Colors.white, size: 28),
                 onPressed: () => _openSettings(context),
                 style: IconButton.styleFrom(
-                  backgroundColor: Colors.black.withOpacity(0.26),
+                  backgroundColor: Colors.black.withValues(alpha: 0.26),
                 ),
               ),
             ),

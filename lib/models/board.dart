@@ -13,11 +13,10 @@ class Board {
 
   /// Get quadrant by ID
   Quadrant? getQuadrant(String id) {
-    try {
-      return quadrants.firstWhere((q) => q.id == id);
-    } catch (_) {
-      return null;
+    for (final q in quadrants) {
+      if (q.id == id) return q;
     }
+    return null;
   }
 
   /// Get quadrant by index (0-3)

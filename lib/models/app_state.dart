@@ -185,9 +185,12 @@ class AppState extends ChangeNotifier {
 
   /// Add task from template
   Future<void> addTaskFromTemplate(String templateId) async {
-    final template = _templates.firstWhere((t) => t.id == templateId);
+    final index = _templates.indexWhere((t) => t.id == templateId);
+    if (index == -1) return;
+
+    final template = _templates[index];
     final task = template.toTask(_uuid.v4());
-    
+
     _tasks.add(task);
     await _storage.saveTasks(_tasks);
     notifyListeners();
@@ -279,16 +282,19 @@ class AppState extends ChangeNotifier {
   }
 
   /// Get task statistics
-  Map<String, dynamic> getTaskStats(String taskId) {
-    final task = _tasks.firstWhere((t) => t.id == taskId);
-    
+  Map<String, dynamic>? getTaskStats(String taskId) {
+    final index = _tasks.indexWhere((t) => t.id == taskId);
+    if (index == -1) return null;
+
+    final task = _tasks[index];
+
     // Get completions in last 30 days
     final thirtyDaysAgo = DateTime.now().subtract(const Duration(days: 30));
     final recentCompletions = task.getCompletionsInPeriod(
       thirtyDaysAgo,
       DateTime.now(),
     );
-    
+
     return {
       'currentStreak': task.currentStreak,
       'totalCompletions': task.completionHistory.length,
@@ -323,8 +329,11 @@ class AppState extends ChangeNotifier {
 
   /// Save current task as template
   Future<void> saveTaskAsTemplate(String taskId) async {
-    final task = _tasks.firstWhere((t) => t.id == taskId);
-    
+    final index = _tasks.indexWhere((t) => t.id == taskId);
+    if (index == -1) return;
+
+    final task = _tasks[index];
+
     final template = TaskTemplate(
       id: _uuid.v4(),
       name: task.name,

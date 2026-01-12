@@ -114,7 +114,7 @@ class TaskItem extends StatelessWidget {
                               vertical: 2,
                             ),
                             decoration: BoxDecoration(
-                              color: _getStreakColor(task.currentStreak).withOpacity(0.1),
+                              color: _getStreakColor(task.currentStreak).withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(
                                 color: _getStreakColor(task.currentStreak),
@@ -260,7 +260,7 @@ class TaskItem extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Colors.orange.withOpacity(0.1),
+                  color: Colors.orange.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.orange),
                 ),

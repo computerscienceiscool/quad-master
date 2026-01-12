@@ -41,7 +41,7 @@ class CenterCircle extends StatelessWidget {
             shape: BoxShape.circle,
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.3),
+                color: Colors.black.withValues(alpha: 0.3),
                 blurRadius: 10,
                 spreadRadius: 2,
               ),
@@ -72,7 +72,7 @@ class CenterCircle extends StatelessWidget {
                               Text(
                                 '${(dailyCompletionPercentage * 100).round()}%',
                                 style: TextStyle(
-                                  color: Colors.amber.withOpacity(0.7),
+                                  color: Colors.amber.withValues(alpha: 0.7),
                                   fontSize: 12,
                                 ),
                               ),

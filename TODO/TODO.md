@@ -3,7 +3,6 @@
 ## Bugs
 
 ### High Priority
-001 ALL: Unsafe firstWhere() calls crash app if ID not found
 002 ALL: Undo timer uses Future.delayed instead of cancellable Timer
 
 ### Medium Priority
@@ -11,7 +10,6 @@
 004 ALL: Missing error handling for Hive storage operations
 
 ### Low Priority
-005 ALL: Debug print() statements in production code
 
 ## Features
 
@@ -32,10 +30,6 @@
 010 ALL: Add navigation observer for automatic undo state clearing
 
 ### Low Priority
-013 ALL: Fix deprecated Color.withOpacity - use withValues() (11 occurrences)
-014 ALL: Fix deprecated TextFormField value - use initialValue (4 occurrences)
-015 ALL: Fix deprecated Color.value - use toARGB32 (1 occurrence)
-016 ALL: Fix deprecated color accessors red/green/blue (3 occurrences)
 
 ## Platform-Specific
 
@@ -53,6 +47,12 @@
 
 ## DONE
 
+✓ 001 ALL: Unsafe firstWhere() calls crash app if ID not found (2026-01-11)
+✓ 005 ALL: Debug print() statements in production code (2026-01-11)
+✓ 013 ALL: Fix deprecated Color.withOpacity - use withValues() (2026-01-11)
+✓ 014 ALL: Fix deprecated TextFormField value - use initialValue (2026-01-11)
+✓ 015 ALL: Fix deprecated Color.value - use toARGB32 (2026-01-11)
+✓ 016 ALL: Fix deprecated color accessors red/green/blue (2026-01-11)
 ✓ 012 ALL: Fix CLAUDE.md file naming docs (2026-01-10)
 ✓ 008 ALL: Clarify emoji policy - allowed for streak badges, notifications, share text (2026-01-10)
 ✓ 011 ALL: Improve week calculation clarity in Task model (2026-01-10)

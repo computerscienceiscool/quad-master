@@ -40,8 +40,8 @@ class HomeWidgetService {
         iOSName: widgetName,
         androidName: widgetName,
       );
-    } catch (e) {
-      print('Error updating home widget: $e');
+    } catch (_) {
+      // Silently fail - widget updates are non-critical
     }
   }
 
@@ -57,15 +57,14 @@ class HomeWidgetService {
           _handleWidgetClick(uri);
         }
       });
-    } catch (e) {
-      print('Error initializing home widget: $e');
+    } catch (_) {
+      // Silently fail - widget initialization is non-critical
     }
   }
 
   void _handleWidgetClick(Uri uri) {
-    // Handle different widget actions
-    // e.g., uri.path could be '/daily', '/weekly', '/add_task'
-    print('Widget clicked: ${uri.path}');
+    // Handle different widget actions based on uri.path
+    // e.g., '/daily', '/weekly', '/add_task'
   }
 
   /// Request widget update permission (iOS 14+)
@@ -76,8 +75,8 @@ class HomeWidgetService {
         name: widgetName,
         iOSName: widgetName,
       );
-    } catch (e) {
-      print('Error requesting widget permission: $e');
+    } catch (_) {
+      // Silently fail - permission request is non-critical
     }
   }
 }

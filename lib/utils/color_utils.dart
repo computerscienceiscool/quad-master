@@ -5,9 +5,9 @@ class ColorUtils {
   /// Calculate relative luminance of a color
   /// Based on WCAG 2.0 formula
   static double getLuminance(Color color) {
-    final r = _linearize(color.red / 255);
-    final g = _linearize(color.green / 255);
-    final b = _linearize(color.blue / 255);
+    final r = _linearize(color.r);
+    final g = _linearize(color.g);
+    final b = _linearize(color.b);
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   }
 

@@ -146,9 +146,17 @@ class NotificationService {
       });
 
       if (topQuadrantId != null) {
-        final quadrant = quadrants.firstWhere((q) => q.id == topQuadrantId);
-        motivationalMessage = 
-            'Good morning! Focus on ${quadrant.name} today - $maxTasks tasks waiting. 💪';
+        Quadrant? quadrant;
+        for (final q in quadrants) {
+          if (q.id == topQuadrantId) {
+            quadrant = q;
+            break;
+          }
+        }
+        if (quadrant != null) {
+          motivationalMessage =
+              'Good morning! Focus on ${quadrant.name} today - $maxTasks tasks waiting. 💪';
+        }
       }
     }
 

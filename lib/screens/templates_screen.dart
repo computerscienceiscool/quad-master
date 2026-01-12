@@ -227,7 +227,7 @@ class TemplatesScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                value: selectedQuadrantId,
+                initialValue: selectedQuadrantId,
                 decoration: const InputDecoration(labelText: 'Quadrant'),
                 items: appState.board!.quadrants
                     .map((q) => DropdownMenuItem(
@@ -243,7 +243,7 @@ class TemplatesScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<TaskFrequency>(
-                value: selectedFrequency,
+                initialValue: selectedFrequency,
                 decoration: const InputDecoration(labelText: 'Frequency'),
                 items: const [
                   DropdownMenuItem(

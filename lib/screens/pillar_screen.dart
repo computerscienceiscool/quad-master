@@ -116,7 +116,7 @@ class _PillarScreenState extends State<PillarScreen> {
                             Icon(
                               Icons.check_circle_outline,
                               size: 64,
-                              color: quadrant.color.withOpacity(0.3),
+                              color: quadrant.color.withValues(alpha: 0.3),
                             ),
                             const SizedBox(height: 16),
                             Text(

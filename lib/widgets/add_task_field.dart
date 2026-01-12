@@ -108,9 +108,9 @@ class _AddTaskFieldState extends State<AddTaskField> {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.blue.withOpacity(0.1),
+                          color: Colors.blue.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: Colors.blue.withOpacity(0.3)),
+                          border: Border.all(color: Colors.blue.withValues(alpha: 0.3)),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,

@@ -119,7 +119,7 @@ class SummaryScreen extends StatelessWidget {
                         Text(
                           'Best Streak: $bestStreak days',
                           style: TextStyle(
-                            color: textColor.withOpacity(0.9),
+                            color: textColor.withValues(alpha: 0.9),
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                           ),
@@ -162,9 +162,9 @@ class SummaryScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: color.withOpacity(0.1),
+                      color: color.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: color.withOpacity(0.3)),
+                      border: Border.all(color: color.withValues(alpha: 0.3)),
                     ),
                     child: Row(
                       children: [

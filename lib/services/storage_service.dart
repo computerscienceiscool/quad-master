@@ -41,22 +41,17 @@ class StorageService {
 
   /// Migrate schema between versions
   Future<void> _migrateSchema(int from, int to) async {
-    print('Migrating schema from v$from to v$to');
-    
     // Step-by-step migrations
     if (from == 1 && to >= 2) {
       await _migrateV1toV2();
     }
-    
+
     // Update schema version
     await _settingsBox.put('schemaVersion', to);
-    print('Schema migration complete: v$to');
   }
 
   /// Migrate from v1 to v2 (add task history)
   Future<void> _migrateV1toV2() async {
-    print('Migrating tasks to v2 (adding history tracking)');
-    
     try {
       final data = _tasksBox.get('all');
       if (data == null) return;
@@ -81,10 +76,8 @@ class StorageService {
       }).toList();
 
       await _tasksBox.put('all', jsonEncode(tasks));
-      print('Task migration complete: ${tasks.length} tasks updated');
-    } catch (e) {
-      print('Error migrating tasks: $e');
-      // Don't crash - keep old data
+    } catch (_) {
+      // Don't crash on migration error - keep old data
     }
   }
 
