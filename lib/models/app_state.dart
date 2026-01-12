@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uuid/uuid.dart';
@@ -22,9 +24,9 @@ class AppState extends ChangeNotifier {
 
   // Recently completed task for undo
   Task? _lastCompletedTask;
-  
-  // Timer handle for cancelling undo timeout
-  String? _lastCompletedTaskId;
+
+  // Cancellable timer for undo timeout
+  Timer? _undoTimer;
 
   AppState(this._storage, this._notifications) {
     _init();
@@ -171,6 +173,9 @@ class AppState extends ChangeNotifier {
   /// Add a new task
   Future<void> addTask(
       String quadrantId, String name, TaskFrequency frequency) async {
+    // Validate quadrantId exists
+    if (_board?.getQuadrant(quadrantId) == null) return;
+
     final task = Task(
       id: _uuid.v4(),
       quadrantId: quadrantId,
@@ -189,6 +194,10 @@ class AppState extends ChangeNotifier {
     if (index == -1) return;
 
     final template = _templates[index];
+
+    // Validate template's quadrantId still exists
+    if (_board?.getQuadrant(template.quadrantId) == null) return;
+
     final task = template.toTask(_uuid.v4());
 
     _tasks.add(task);
@@ -204,8 +213,10 @@ class AppState extends ChangeNotifier {
     // Haptic feedback for completion
     HapticFeedback.mediumImpact();
 
+    // Cancel any existing undo timer
+    _undoTimer?.cancel();
+
     _lastCompletedTask = _tasks[index].copyWith();
-    _lastCompletedTaskId = taskId;
     _tasks[index].complete();
     
     // Check for streak milestone and celebrate
@@ -222,13 +233,10 @@ class AppState extends ChangeNotifier {
     _scheduleReminders();
 
     // Clear undo after 4 seconds
-    final completedTaskId = taskId;
-    Future.delayed(const Duration(seconds: 4), () {
-      if (_lastCompletedTaskId == completedTaskId) {
-        _lastCompletedTask = null;
-        _lastCompletedTaskId = null;
-        notifyListeners();
-      }
+    _undoTimer = Timer(const Duration(seconds: 4), () {
+      _lastCompletedTask = null;
+      _undoTimer = null;
+      notifyListeners();
     });
   }
 
@@ -239,12 +247,15 @@ class AppState extends ChangeNotifier {
     final index = _tasks.indexWhere((t) => t.id == _lastCompletedTask!.id);
     if (index == -1) return;
 
+    // Cancel undo timer
+    _undoTimer?.cancel();
+    _undoTimer = null;
+
     // Light haptic for undo
     HapticFeedback.lightImpact();
 
     _tasks[index].uncomplete();
     _lastCompletedTask = null;
-    _lastCompletedTaskId = null;
 
     await _storage.saveTasks(_tasks);
     notifyListeners();
@@ -255,8 +266,9 @@ class AppState extends ChangeNotifier {
 
   /// Clear the undo state (call when navigating away)
   void clearUndoState() {
+    _undoTimer?.cancel();
+    _undoTimer = null;
     _lastCompletedTask = null;
-    _lastCompletedTaskId = null;
     notifyListeners();
   }
 

@@ -3,10 +3,8 @@
 ## Bugs
 
 ### High Priority
-002 ALL: Undo timer uses Future.delayed instead of cancellable Timer
 
 ### Medium Priority
-003 ALL: No validation of quadrantId before adding task
 004 ALL: Missing error handling for Hive storage operations
 
 ### Low Priority
@@ -22,12 +20,10 @@
 ## Improvements
 
 ### High Priority
-006 ALL: Add unit tests for Task model and AppState
 007 ALL: Add widget tests for core UI components
 
 ### Medium Priority
 009 ALL: Optimize summary stats calculation with memoization
-010 ALL: Add navigation observer for automatic undo state clearing
 
 ### Low Priority
 
@@ -47,6 +43,10 @@
 
 ## DONE
 
+✓ 006 ALL: Add unit tests for Task model and AppState (2026-01-11)
+✓ 010 ALL: Add navigation observer for automatic undo state clearing (2026-01-11)
+✓ 002 ALL: Undo timer uses Future.delayed instead of cancellable Timer (2026-01-11)
+✓ 003 ALL: No validation of quadrantId before adding task (2026-01-11)
 ✓ 001 ALL: Unsafe firstWhere() calls crash app if ID not found (2026-01-11)
 ✓ 005 ALL: Debug print() statements in production code (2026-01-11)
 ✓ 013 ALL: Fix deprecated Color.withOpacity - use withValues() (2026-01-11)

@@ -9,6 +9,23 @@ import 'models/app_state.dart';
 import 'screens/home_screen.dart';
 import 'screens/setup_screen.dart';
 
+/// Clears undo state when navigating between screens
+class UndoClearingObserver extends NavigatorObserver {
+  final AppState appState;
+
+  UndoClearingObserver(this.appState);
+
+  @override
+  void didPush(Route route, Route? previousRoute) {
+    appState.clearUndoState();
+  }
+
+  @override
+  void didPop(Route route, Route? previousRoute) {
+    appState.clearUndoState();
+  }
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -59,28 +76,27 @@ class _QuadMasterAppState extends State<QuadMasterApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Quad Master',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        fontFamily: 'Roboto',
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.amber,
-          brightness: Brightness.light,
-        ),
-      ),
-      home: Consumer<AppState>(
-        builder: (context, appState, child) {
-          // Show setup if no board configured, otherwise show home
-          if (!appState.isInitialized) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          return appState.hasBoard 
-              ? HomeScreen(initialAction: _initialQuickAction)
-              : const SetupScreen();
-        },
-      ),
+    return Consumer<AppState>(
+      builder: (context, appState, child) {
+        return MaterialApp(
+          title: 'Quad Master',
+          debugShowCheckedModeBanner: false,
+          navigatorObservers: [UndoClearingObserver(appState)],
+          theme: ThemeData(
+            useMaterial3: true,
+            fontFamily: 'Roboto',
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.amber,
+              brightness: Brightness.light,
+            ),
+          ),
+          home: !appState.isInitialized
+              ? const Center(child: CircularProgressIndicator())
+              : appState.hasBoard
+                  ? HomeScreen(initialAction: _initialQuickAction)
+                  : const SetupScreen(),
+        );
+      },
     );
   }
 }
