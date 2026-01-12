@@ -9,7 +9,8 @@
       "Bash(hash -r)",
       "Bash(/snap/bin/flutter analyze:*)",
       "Bash(bash:*)",
-      "Bash(snap list:*)"
+      "Bash(snap list:*)",
+      "Bash(flutter test:*)"
     ]
   }
 }
